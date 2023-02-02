@@ -3,21 +3,24 @@ public class App {
 
     public App(){
         this.travelManager = new TravelManager();
-        init();
     }
 
     public void init() {
         System.out.println("Starting App...");
+        loopManager();
 
     }
 
     public void loopManager(){
         boolean loop = true;
         while (loop) {
+            System.out.println();
             int opt = menuManager();
             switch (opt) {
                 case 1:
                     this.travelManager.addTrip();
+                    break;
+                case 2:
 
             }
         }
