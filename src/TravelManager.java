@@ -11,7 +11,10 @@ public class TravelManager {
         return travels;
     }
 
+    //Adds 6 sample trips to the travels list
     public void addSampleTrips(){
+
+
         List<Trip> sampleTrips = new ArrayList<>(){{
             add(new AirTrip("Resort Trip", 3, Arrays.asList("Madrid","Hawai","Madrid"), AirTrip.createDetails("Madrid", "09:00","Madrid", "15:00") ));
             add(new LandTrip("Discover Americas", 4, Arrays.asList("Tampa","Madrid","Kansas"), LandTrip.createDetails("Tampa Hotel", "2")));
@@ -21,7 +24,11 @@ public class TravelManager {
 
         }};
 
-        this.travels.addAll(sampleTrips);
+        List<Trip> trips = sampleTrips.stream()
+                .filter((t) -> !this.travels.contains(t))
+                .toList();
+
+        this.travels.addAll(trips);
     }
 
     //It returns a list of trips that contain the received city

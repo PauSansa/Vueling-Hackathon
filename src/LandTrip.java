@@ -7,9 +7,10 @@ public class LandTrip extends Trip{
         super(name, "Land", duration, cities, details);
     }
 
+    //Static method to agilize the process of creating the manual trip
     public static Map<String,String> createDetails(){
         String hotel = Entrys.stringEntry("Enter the name of the hotel");
-        String score = Entrys.intEntry("Enter the stars of the hotel") + " *";
+        String score = Entrys.scoreEntry("Enter the stars of the hotel") + " *";
 
         Map<String,String> tripDetails = new HashMap<>(){{
             put(hotel,score);
@@ -18,6 +19,8 @@ public class LandTrip extends Trip{
         return tripDetails;
     }
 
+
+    //Static method to agilize the process of creating sample trips
     public static Map<String,String> createDetails(String hotel, String score){
         Map<String,String> tripDetails = new HashMap<>(){{
             put(hotel,score);

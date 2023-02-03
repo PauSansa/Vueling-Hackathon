@@ -11,6 +11,9 @@ public class App {
 
     }
 
+
+    //This method gestionates the loop of the Search Menu, at each iteration invokes the menuSearch() that returns
+    //an int depending on the choice of the costumer
     public void loopSearch(){
         boolean loop = true;
         while(loop) {
@@ -28,6 +31,7 @@ public class App {
         }
     }
 
+    //This method asks the costumer for an option to execute
     public int menuSearch(){
         System.out.println("~~~~~~~ SEARCH MENU ~~~~~~~");
         System.out.println("~~1. Search a Trip~~");
@@ -35,6 +39,9 @@ public class App {
         return Entrys.intEntry("Select Option (Enter a digit)");
     }
 
+
+    //This method gestionates the loop of the Trip Manager, at each iteration invokes the menuManager() that returns
+    //an int depending on the choice of the costumer
     public void loopManager(){
         boolean loop = true;
         while (loop) {
@@ -59,6 +66,8 @@ public class App {
         }
     }
 
+
+    //This method asks the costumer for an option to execute
     public int menuManager() {
         System.out.println("~~~~~~~ MANAGER MENU ~~~~~~~");
         System.out.println("~~1. Add a new Trip~~");

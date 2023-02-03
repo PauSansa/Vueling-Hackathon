@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+//SuperClass of AirTrip and LandTrip, it decides the structure of those
 public abstract class Trip {
     private String name;
     private String type;
@@ -37,6 +39,8 @@ public abstract class Trip {
         return details;
     }
 
+
+    //A trip will be equal to another if their names are equal
     @Override
     public boolean equals(Object obj) {
         Trip other = (Trip) obj;
@@ -47,6 +51,7 @@ public abstract class Trip {
         }
     }
 
+    //It converts cities and details onto a more readable format and return all the atributes of trip
     @Override
     public String toString() {
         String citiesString = String.join(", ", this.cities);

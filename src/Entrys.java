@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//Class of Static Methods to agilize the inputs
 public class Entrys {
-    //Class of Static Methods to agilize the inputs
 
+
+    //Asks for a String without any digit
     public static String stringEntry(String msg) {
         Scanner scString = new Scanner(System.in);
         Boolean correct = false;
@@ -30,6 +32,7 @@ public class Entrys {
         return rsps;
     }
 
+    //Asks for a score (the value must be 0 < v < 5)
     public static int scoreEntry(String msg){
         Scanner sc = new Scanner(System.in);
         boolean correct = false;
@@ -51,6 +54,7 @@ public class Entrys {
         return value;
     }
 
+    //Asks for a String, it can contain digits
     public static String stringEntryNotStrict(String msg) {
         Scanner scStringNotStrict = new Scanner(System.in);
 
@@ -60,6 +64,7 @@ public class Entrys {
         return rsps;
     }
 
+    //Asks for an hour (it only accepts HH:mm format)
     public static String hourEntry(String msg) {
         Scanner scHour = new Scanner(System.in);
         boolean correct = false;
@@ -82,6 +87,7 @@ public class Entrys {
         return convertedDate;
     }
 
+    //Asks for a integer
     public static int intEntry(String msg){
         Scanner sc = new Scanner(System.in);
         boolean correct = false;

@@ -8,6 +8,7 @@ public class AirTrip extends Trip{
     }
 
 
+    //Static method to agilize the process of creating the manual trip
     public static Map<String,String> createDetails(String city1, String city2){
         String detailDeparture1city = city1;
         String detailDeparture1hour = Entrys.hourEntry("Enter the hour of the departure from " + detailDeparture1city);
@@ -23,6 +24,7 @@ public class AirTrip extends Trip{
         return tripDetails;
     }
 
+    //Static method to agilize the process of creating sample trips
     public static Map<String,String> createDetails(String city1, String hour1, String city2, String hour2){
         Map<String, String> tripDetails = new HashMap<>(){{
            put(city1,hour1);
