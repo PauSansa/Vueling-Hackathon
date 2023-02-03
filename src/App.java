@@ -21,9 +21,11 @@ public class App {
             int opt = menuSearch();
             switch (opt){
                 case 1:
-                    this.travelManager.searchTrip();
+                    this.travelManager.searchTripCity();
                     break;
                 case 2:
+                    this.travelManager.searchTripName();
+                case 3:
                     loop = false;
                     loopManager();
                     break;
@@ -34,8 +36,9 @@ public class App {
     //This method asks the costumer for an option to execute
     public int menuSearch(){
         System.out.println("~~~~~~~ SEARCH MENU ~~~~~~~");
-        System.out.println("~~1. Search a Trip~~");
-        System.out.println("~~2. Go to Manager Menu~~");
+        System.out.println("~~1. Search a Trip by City~~");
+        System.out.println("~~2. Search a Trip by Name~~");
+        System.out.println("~~3. Go to Manager Menu~~");
         return Entrys.intEntry("Select Option (Enter a digit)");
     }
 

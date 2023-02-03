@@ -32,7 +32,7 @@ public class TravelManager {
     }
 
     //It returns a list of trips that contain the received city
-    public void searchTrip(){
+    public void searchTripCity(){
         String query = null;
         boolean correct = false;
         List<Trip> matches;
@@ -56,6 +56,40 @@ public class TravelManager {
         );
 
         matches.forEach(System.out::println);
+
+
+    }
+
+    public void searchTripName(){
+        String query = null;
+        boolean correct = false;
+        List<Trip> matches;
+        while(!correct) {
+            try {
+                String keyphrase = Entrys.stringEntry("Enter the name of the flight. EX: Madrid");
+                if (keyphrase.length() < 0) {
+                    throw new WrongInputException();
+                } else {
+                    query = keyphrase;
+                    correct = true;
+                }
+            } catch (WrongInputException e) {
+                System.out.println("Wrong Input, you must enter a String");
+            }
+        }
+        String finalQuery = query;
+        matches = new ArrayList<>(this.travels.stream()
+                .filter((t) -> t.getName().equals(finalQuery))
+                .toList()
+        );
+
+        if (matches.size() > 0 ){
+            matches.forEach(System.out::println);
+        } else {
+            System.out.println("There is no trip with the provided data.");
+        }
+
+
 
 
     }
