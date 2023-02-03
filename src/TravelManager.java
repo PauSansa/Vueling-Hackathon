@@ -115,16 +115,18 @@ public class TravelManager {
         boolean tripExists;
 
         System.out.println("Its an AirTrip(1) or an LandTrip(2) ??");
-
-        try {
-            tripType = Entrys.intEntry("Select 1 or 2");
-            if (tripType == 1 || tripType == 2){
-                trip = createTrip(tripType);
-            } else{
-                throw new WrongInputException();
+        while (!correct) {
+            try {
+                tripType = Entrys.intEntry("Select 1 or 2");
+                if (tripType == 1 || tripType == 2) {
+                    trip = createTrip(tripType);
+                    correct = true;
+                } else {
+                    throw new WrongInputException();
+                }
+            } catch (WrongInputException e) {
+                System.out.println("Wrong input, you have to enter 1 or 2 ");
             }
-        } catch (WrongInputException e){
-            System.out.println("Wrong input, you have to enter 1 or 2 ");
         }
 
         for (Trip t : travels){
