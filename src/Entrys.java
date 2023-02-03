@@ -5,6 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Entrys {
+    //Class of Static Methods to agilize the inputs
+
     public static String stringEntry(String msg) {
         Scanner scString = new Scanner(System.in);
         Boolean correct = false;

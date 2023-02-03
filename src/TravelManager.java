@@ -7,6 +7,53 @@ public class TravelManager {
         this.travels = new ArrayList<>();
     }
 
+    public List<Trip> getTravels() {
+        return travels;
+    }
+
+    public void addSampleTrips(){
+        List<Trip> sampleTrips = new ArrayList<>(){{
+            add(new AirTrip("Resort Trip", 3, Arrays.asList("Madrid","Hawai","Madrid"), AirTrip.createDetails("Madrid", "09:00","Madrid", "15:00") ));
+            add(new LandTrip("Discover Americas", 4, Arrays.asList("Tampa","Madrid","Kansas"), LandTrip.createDetails("Tampa Hotel", "2")));
+            add(new AirTrip("AMAZING", 5, Arrays.asList("Amazonas","Tampa"), AirTrip.createDetails("Amazonas", "09:00","Tampa", "15:00") ));
+            add(new LandTrip("BUCCANERS", 3, Arrays.asList("Tampa","Hawai","Madrid"), LandTrip.createDetails("NFL BUCS OFFICIAL HOTEL", "4") ));
+            add(new AirTrip("CHIEFS", 2, Arrays.asList("Kansas City","Huston"), AirTrip.createDetails("Kansas City", "09:00","Huston", "15:00") ));
+
+        }};
+
+        this.travels.addAll(sampleTrips);
+    }
+
+    //It returns a list of trips that contain the received city
+    public void searchTrip(){
+        String query = null;
+        boolean correct = false;
+        List<Trip> matches;
+        while(!correct) {
+            try {
+                String keyphrase = Entrys.stringEntry("Enter the city of the flight. EX: Madrid");
+                if (keyphrase.length() < 3) {
+                    throw new WrongInputException();
+                } else {
+                    query = keyphrase;
+                    correct = true;
+                }
+            } catch (WrongInputException e) {
+                System.out.println("Wrong Input, you must enter 3 chars minimum");
+            }
+        }
+        String finalQuery = query;
+        matches = new ArrayList<>(this.travels.stream()
+                .filter((t) -> t.getCities().contains(finalQuery))
+                .toList()
+        );
+
+        matches.forEach(System.out::println);
+
+
+    }
+
+    //It deletes a trip if exists using the name of the trip as a parameter
     public void deleteTrip(){
         String tripName = Entrys.stringEntry("Enter the name of the trip to delete:");
         ListIterator<Trip> lt = travels.listIterator();
@@ -19,7 +66,7 @@ public class TravelManager {
     }
 
 
-    //Creates a trip using method createTrip(), and, if not exists, it adds it to the travels list
+    //Creates a trip using method createTrip(), and, if it doesn't exist, it adds it to the travels list
     public void addTrip() {
         int tripType;
         Trip trip = null;

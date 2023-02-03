@@ -17,4 +17,12 @@ public class LandTrip extends Trip{
 
         return tripDetails;
     }
+
+    public static Map<String,String> createDetails(String hotel, String score){
+        Map<String,String> tripDetails = new HashMap<>(){{
+            put(hotel,score);
+        }};
+
+        return tripDetails;
+    }
 }

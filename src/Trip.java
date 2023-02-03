@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class Trip {
     private String name;
@@ -11,6 +12,7 @@ public abstract class Trip {
     public Trip(String name, String type, int duration,List<String> cities, Map<String, String> details) {
         this.name = name;
         this.type = type;
+        this.cities = cities;
         this.duration = duration;
         this.details = details;
     }
@@ -43,5 +45,14 @@ public abstract class Trip {
         } else{
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        String citiesString = String.join(", ", this.cities);
+        String detailsString = this.details.entrySet().stream()
+                .map(entry -> entry.getKey() + " " + entry.getValue())
+                .collect(Collectors.joining(", "));
+        return String.join("; ", this.name, this.type + "Trip", citiesString, detailsString);
     }
 }

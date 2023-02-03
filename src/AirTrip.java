@@ -4,8 +4,9 @@ import java.util.Map;
 
 public class AirTrip extends Trip{
     public AirTrip(String name, int duration,List<String> cities, Map<String, String> details) {
-        super(name, "air", duration,cities, details);
+        super(name, "Air", duration,cities, details);
     }
+
 
     public static Map<String,String> createDetails(String city1, String city2){
         String detailDeparture1city = city1;
@@ -17,6 +18,15 @@ public class AirTrip extends Trip{
         Map<String, String> tripDetails = new HashMap<>(){{
             put(detailDeparture1city,detailDeparture1hour);
             put(detailDeparture2city,detailDeparture2hour);
+        }};
+
+        return tripDetails;
+    }
+
+    public static Map<String,String> createDetails(String city1, String hour1, String city2, String hour2){
+        Map<String, String> tripDetails = new HashMap<>(){{
+           put(city1,hour1);
+           put(city2,hour2);
         }};
 
         return tripDetails;
