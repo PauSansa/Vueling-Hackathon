@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 //Class of Static Methods to agilize the inputs
 public class Entrys {
+    private static Scanner sc = new Scanner(System.in);
 
 
     //Asks for a String without any digit
     public static String stringEntry(String msg) {
-        Scanner scString = new Scanner(System.in);
         Boolean correct = false;
         String rsps = null;
 
         while(!correct) {
             try {
                 System.out.println(msg + "\n");
-                rsps = scString.nextLine();
+                rsps = sc.nextLine();
                 if (rsps.matches(".*\\d.*") || rsps.isEmpty()){
                     throw new WrongInputException();
                 } else {
@@ -28,13 +28,12 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter a String without any digit \n");
             }
         }
-        scString.reset();
+        sc.reset();
         return rsps;
     }
 
     //Asks for a score (the value must be 0 < v < 5)
     public static int scoreEntry(String msg){
-        Scanner sc = new Scanner(System.in);
         boolean correct = false;
         int value = 0;
         while (!correct) {
@@ -51,22 +50,21 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter a numbres between 0 and 5 \n");
             }
         }
+        sc.reset();
         return value;
     }
 
     //Asks for a String, it can contain digits
     public static String stringEntryNotStrict(String msg) {
-        Scanner scStringNotStrict = new Scanner(System.in);
 
         System.out.println(msg + "\n");
-        String rsps = scStringNotStrict.nextLine();
-        scStringNotStrict.reset();
+        String rsps = sc.nextLine();
+        sc.reset();
         return rsps;
     }
 
     //Asks for an hour (it only accepts HH:mm format)
     public static String hourEntry(String msg) {
-        Scanner scHour = new Scanner(System.in);
         boolean correct = false;
         String convertedDate = null;
 
@@ -74,7 +72,7 @@ public class Entrys {
 
         while (!correct){
             try {
-                String dateraw = scHour.nextLine();
+                String dateraw = sc.nextLine();
                 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                 Date date = formatter.parse(dateraw);
                 convertedDate = formatter.format(date);
@@ -83,13 +81,12 @@ public class Entrys {
                 System.out.println("You must enter a hour using the format hh:mm \n");
             }
         }
-
+        sc.reset();
         return convertedDate;
     }
 
     //Asks for a integer
     public static int intEntry(String msg){
-        Scanner sc = new Scanner(System.in);
         boolean correct = false;
         int value = 0;
         while (!correct) {
@@ -101,6 +98,7 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter an Integer \n");
             }
         }
+        sc.reset();
         return value;
     }
 }
