@@ -1,10 +1,10 @@
 import java.sql.*;
 import java.util.stream.Collectors;
 
-public class dbManager {
+public class DbManager {
     private Connection conn;
-    private Statement statement;
-    public dbManager() {
+    private Statement stmt;
+    public DbManager() {
         try {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://sql7.freesqldatabase.com/sql7596281",
@@ -12,7 +12,7 @@ public class dbManager {
                     "5V4U7k7EwE"
             );
 
-            statement = conn.createStatement();
+            stmt = conn.createStatement();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class dbManager {
                 .collect(Collectors.joining(", "));
 
         try {
-            statement.executeUpdate(String.format(
+            stmt.executeUpdate(String.format(
                     "INSERT INTO prueba_trips (name, type, duration, cities, details)" +
                             " VALUES('%s', '%s', %d, '%s', '%s')",
                     name, type, duration, cities, details
@@ -37,6 +37,20 @@ public class dbManager {
         } catch(SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public String searchTripName(String name){
+        try {
+            String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'", name);
+            ResultSet rS = stmt.executeQuery(query);
+            if (!rS.next()){
+                return null;
+            }
+            return rS.getString("name");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

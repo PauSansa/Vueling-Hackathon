@@ -28,7 +28,6 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter a String without any digit \n");
             }
         }
-        sc.reset();
         return rsps;
     }
 
@@ -50,18 +49,10 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter a numbres between 0 and 5 \n");
             }
         }
-        sc.reset();
+        sc.nextLine();
         return value;
     }
 
-    //Asks for a String, it can contain digits
-    public static String stringEntryNotStrict(String msg) {
-
-        System.out.println(msg + "\n");
-        String rsps = sc.nextLine();
-        sc.reset();
-        return rsps;
-    }
 
     //Asks for an hour (it only accepts HH:mm format)
     public static String hourEntry(String msg) {
@@ -81,7 +72,6 @@ public class Entrys {
                 System.out.println("You must enter a hour using the format hh:mm \n");
             }
         }
-        sc.reset();
         return convertedDate;
     }
 
@@ -98,7 +88,7 @@ public class Entrys {
                 System.out.println("Incorrect Value, you must enter an Integer \n");
             }
         }
-        sc.reset();
+        sc.nextLine();
         return value;
     }
 }

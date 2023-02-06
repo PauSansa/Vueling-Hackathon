@@ -1,17 +1,15 @@
 import java.util.*;
 
 public class TravelManager {
-    private List<Trip> travels;
+    private DbManager dbManager;
 
     public TravelManager() {
-        this.travels = new ArrayList<>();
+        dbManager = new DbManager();
     }
 
-    public List<Trip> getTravels() {
-        return travels;
-    }
 
     //Adds 6 sample trips to the travels list
+    @Deprecated
     public void addSampleTrips(){
 
 
@@ -24,11 +22,7 @@ public class TravelManager {
 
         }};
 
-        List<Trip> trips = sampleTrips.stream()
-                .filter((t) -> !this.travels.contains(t))
-                .toList();
-
-        this.travels.addAll(trips);
+        dbManager.insertTrip(sampleTrips.get(0));
     }
 
     //It returns a list of trips that contain the received city
@@ -50,12 +44,7 @@ public class TravelManager {
             }
         }
         String finalQuery = query;
-        matches = new ArrayList<>(this.travels.stream()
-                .filter((t) -> t.getCities().contains(finalQuery))
-                .toList()
-        );
 
-        matches.forEach(System.out::println);
 
 
     }
@@ -78,18 +67,6 @@ public class TravelManager {
             }
         }
         String finalQuery = query;
-        matches = new ArrayList<>(this.travels.stream()
-                .filter((t) -> t.getName().equals(finalQuery))
-                .toList()
-        );
-
-        if (matches.size() > 0 ){
-            matches.forEach(System.out::println);
-        } else {
-            System.out.println("There is no trip with the provided data.");
-        }
-
-
 
 
     }
@@ -97,13 +74,7 @@ public class TravelManager {
     //It deletes a trip if exists using the name of the trip as a parameter
     public void deleteTrip(){
         String tripName = Entrys.stringEntry("Enter the name of the trip to delete:");
-        ListIterator<Trip> lt = travels.listIterator();
-        while(lt.hasNext()){
-            Trip t = lt.next();
-            if (t.getName().equals(tripName)){
-                lt.remove();
-            }
-        }
+
     }
 
 
@@ -129,14 +100,14 @@ public class TravelManager {
             }
         }
 
-        for (Trip t : travels){
-            if (t.equals(trip)){
-                System.out.println("This trip already exists");
-                return;
-            }
+        if (this.dbManager.searchTripName(trip.getName()) == null){
+            dbManager.insertTrip(trip);
+            System.out.println("The trips has been added to the database");
+        } else{
+            System.out.println("This trip is already in the database");
         }
 
-        this.travels.add(trip);
+
     }
 
 
