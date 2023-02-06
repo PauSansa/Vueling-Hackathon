@@ -112,7 +112,7 @@ public class TravelManager {
         int tripType;
         Trip trip = null;
         boolean correct = false;
-        boolean tripExists;
+    
 
         System.out.println("Its an AirTrip(1) or an LandTrip(2) ??");
         while (!correct) {
