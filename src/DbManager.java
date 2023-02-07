@@ -65,17 +65,17 @@ public class DbManager {
         }
     }
 
-    public String searchTripName(String name){
+    public ResultSet searchTripsName(String name){
+        if (!exists(name)){
+            return null;
+        }
         try {
             String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'", name);
-            ResultSet rS = stmt.executeQuery(query);
-            if (!rS.next()){
-                return null;
-            }
-            return rS.getString("name");
-        } catch (SQLException e){
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 

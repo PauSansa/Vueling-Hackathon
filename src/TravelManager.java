@@ -1,3 +1,5 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class TravelManager {
@@ -35,23 +37,41 @@ public class TravelManager {
     }
 
     public void searchTripName(){
-        String query = null;
+        String name = null;
         boolean correct = false;
         List<Trip> matches;
         while(!correct) {
             try {
-                String keyphrase = Entrys.stringEntry("Enter the name of the flight. EX: Madrid");
+                String keyphrase = Entrys.stringEntry("Enter the name of the flight. EX: Exotic Trip");
                 if (keyphrase.length() < 0) {
                     throw new WrongInputException();
                 } else {
-                    query = keyphrase;
+                    name = keyphrase;
                     correct = true;
                 }
             } catch (WrongInputException e) {
                 System.out.println("Wrong Input, you must enter a String");
             }
         }
-        String finalQuery = query;
+        ResultSet rs = this.dbManager.searchTripsName(name);
+
+
+
+
+        try{
+            while(rs.next()){
+                String tripName = rs.getString("name");
+                String tripType = rs.getString("type") + " Trip";
+                String tripDuration = rs.getInt("duration") + " days";
+                String tripCities = rs.getString("cities");
+                String tripDetails = rs.getString("details");
+
+                String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
+                System.out.println(finalString);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
 
     }
