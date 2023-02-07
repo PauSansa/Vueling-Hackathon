@@ -22,7 +22,7 @@ public class DbManager {
     public boolean exists(String name){
         String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'",name);
         try {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM prueba_sql W");
+            ResultSet rs = stmt.executeQuery(query);
             if (!rs.next()){
                 return false;
             } else{
