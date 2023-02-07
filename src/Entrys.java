@@ -86,6 +86,7 @@ public class Entrys {
                 correct = true;
             } catch (InputMismatchException e) {
                 System.out.println("Incorrect Value, you must enter an Integer \n");
+                sc.nextLine();
             }
         }
         sc.nextLine();
