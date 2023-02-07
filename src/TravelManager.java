@@ -31,6 +31,7 @@ public class TravelManager {
             }
         }
 
+
         ResultSet rs = this.dbManager.searchTripsCity(city);
         try {
             if (rs.next()) {
@@ -82,24 +83,25 @@ public class TravelManager {
                 System.out.println("Wrong Input, you must enter a String");
             }
         }
-        ResultSet rs = this.dbManager.searchTripsName(name);
 
+        if(this.dbManager.exists(name)) {
+            ResultSet rs = this.dbManager.searchTripsName(name);
+            try {
+                while (rs.next()) {
+                    String tripName = rs.getString("name");
+                    String tripType = rs.getString("type") + " Trip";
+                    String tripDuration = rs.getInt("duration") + " days";
+                    String tripCities = rs.getString("cities");
+                    String tripDetails = rs.getString("details");
 
-
-
-        try{
-            while(rs.next()){
-                String tripName = rs.getString("name");
-                String tripType = rs.getString("type") + " Trip";
-                String tripDuration = rs.getInt("duration") + " days";
-                String tripCities = rs.getString("cities");
-                String tripDetails = rs.getString("details");
-
-                String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
-                System.out.println(finalString);
+                    String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
+                    System.out.println(finalString);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e){
-            e.printStackTrace();
+        } else{
+            System.out.println("There is no trip with this name");
         }
 
 
