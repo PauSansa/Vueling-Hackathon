@@ -100,7 +100,7 @@ public class TravelManager {
             }
         }
 
-        if (this.dbManager.searchTripName(trip.getName()) == null){
+        if (!this.dbManager.exists(trip.getName())){
             dbManager.insertTrip(trip);
             System.out.println("The trips has been added to the database");
         } else{

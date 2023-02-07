@@ -19,6 +19,22 @@ public class DbManager {
         }
     }
 
+    public boolean exists(String name){
+        String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'",name);
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM prueba_sql W");
+            if (!rs.next()){
+                return false;
+            } else{
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public void insertTrip(Trip trip){
         String name = trip.getName();
         String type = trip.getType();
