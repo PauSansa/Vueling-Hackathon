@@ -180,6 +180,8 @@ public class TravelManager {
 
     }
 
+
+    //Show all the trips stored in the database
     public void showAllTrips(){
         this.dbManager.showAllTrips();
     }

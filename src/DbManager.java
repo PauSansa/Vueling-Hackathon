@@ -4,6 +4,8 @@ import java.util.stream.Collectors;
 public class DbManager {
     private Connection conn;
     private Statement stmt;
+
+    //Constructor of the dbManager
     public DbManager() {
         try {
             conn = DriverManager.getConnection(
@@ -19,8 +21,9 @@ public class DbManager {
         }
     }
 
+    //It deletes a trip by its name
     public void removeTrip(String name) {
-        String query = String.format("DELETE FROM prueba_trips WHERE(name = '%s')", name);
+        String query = String.format("DELETE FROM trips WHERE(name = '%s')", name);
         try{
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -30,7 +33,7 @@ public class DbManager {
     }
 
     public boolean exists(String name){
-        String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'",name);
+        String query = String.format("SELECT * FROM trips WHERE name = '%s'",name);
         try {
             ResultSet rs = stmt.executeQuery(query);
             if (!rs.next()){
@@ -56,7 +59,7 @@ public class DbManager {
 
         try {
             stmt.executeUpdate(String.format(
-                    "INSERT INTO prueba_trips (name, type, duration, cities, details)" +
+                    "INSERT INTO trips (name, type, duration, cities, details)" +
                             " VALUES('%s', '%s', %d, '%s', '%s')",
                     name, type, duration, cities, details
             ));
@@ -67,7 +70,7 @@ public class DbManager {
 
     public void showAllTrips() {
         try {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM prueba_trips");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM trips");
             while(rs.next()){
                 String tripName = rs.getString("name");
                 String tripType = rs.getString("type") + " Trip";
@@ -88,7 +91,7 @@ public class DbManager {
             return null;
         }
         try {
-            String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'", name);
+            String query = String.format("SELECT * FROM trips WHERE name = '%s'", name);
             return stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +102,7 @@ public class DbManager {
 
     public ResultSet searchTripsCity(String city){
         String formattedString = String.format("%%%s%%", city);
-        String query = String.format("SELECT * FROM prueba_trips WHERE cities LIKE '%s'",formattedString);
+        String query = String.format("SELECT * FROM trips WHERE cities LIKE '%s'",formattedString);
         try {
             return stmt.executeQuery(query);
         } catch(SQLException e){
