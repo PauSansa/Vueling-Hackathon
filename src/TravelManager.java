@@ -8,22 +8,7 @@ public class TravelManager {
     }
 
 
-    //Adds 6 sample trips to the travels list
-    @Deprecated
-    public void addSampleTrips(){
 
-
-        List<Trip> sampleTrips = new ArrayList<>(){{
-            add(new AirTrip("Resort Trip", 3, Arrays.asList("Madrid","Hawai","Madrid"), AirTrip.createDetails("Madrid", "09:00","Madrid", "15:00") ));
-            add(new LandTrip("Discover Americas", 4, Arrays.asList("Tampa","Madrid","Kansas"), LandTrip.createDetails("Tampa Hotel", "2")));
-            add(new AirTrip("AMAZING", 5, Arrays.asList("Amazonas","Tampa"), AirTrip.createDetails("Amazonas", "09:00","Tampa", "15:00") ));
-            add(new LandTrip("BUCCANERS", 3, Arrays.asList("Tampa","Hawai","Madrid"), LandTrip.createDetails("NFL BUCS OFFICIAL HOTEL", "4") ));
-            add(new AirTrip("CHIEFS", 2, Arrays.asList("Kansas City","Huston"), AirTrip.createDetails("Kansas City", "09:00","Huston", "15:00") ));
-
-        }};
-
-        dbManager.insertTrip(sampleTrips.get(0));
-    }
 
     //It returns a list of trips that contain the received city
     public void searchTripCity(){
@@ -74,6 +59,16 @@ public class TravelManager {
     //It deletes a trip if exists using the name of the trip as a parameter
     public void deleteTrip(){
         String tripName = Entrys.stringEntry("Enter the name of the trip to delete:");
+
+        if (!this.dbManager.exists(tripName)) {
+            System.out.println("This trips doesnt exists");
+            return;
+        } else{
+            this.dbManager.removeTrip(tripName);
+            System.out.println("The trip has been deleted successfully \n");
+        }
+
+
 
     }
 

@@ -58,9 +58,6 @@ public class App {
                     this.travelManager.deleteTrip();
                     break;
                 case 3:
-                    this.travelManager.addSampleTrips();
-                    break;
-                case 4:
                     loop = false;
                     loopSearch();
                     break;
@@ -75,8 +72,7 @@ public class App {
         System.out.println("~~~~~~~ MANAGER MENU ~~~~~~~");
         System.out.println("~~1. Add a new Trip~~");
         System.out.println("~~2. Delete a new Trip~~");
-        System.out.println("~~3. Add sample trips~~");
-        System.out.println("~~4. Go to Trip Search Engine~~");
+        System.out.println("~~3. Go to Trip Search Engine~~");
         return Entrys.intEntry("Select Option (Enter a digit)");
     }
 

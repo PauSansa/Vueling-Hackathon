@@ -19,6 +19,16 @@ public class DbManager {
         }
     }
 
+    public void removeTrip(String name) {
+        String query = String.format("DELETE FROM prueba_trips WHERE(name = '%s')", name);
+        try{
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public boolean exists(String name){
         String query = String.format("SELECT * FROM prueba_trips WHERE name = '%s'",name);
         try {
