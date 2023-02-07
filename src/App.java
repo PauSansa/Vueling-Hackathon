@@ -59,6 +59,7 @@ public class App {
                     break;
                 case 3:
                     this.travelManager.showAllTrips();
+                    break;
                 case 4:
                     loop = false;
                     loopSearch();

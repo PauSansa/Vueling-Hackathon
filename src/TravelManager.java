@@ -146,7 +146,7 @@ public class TravelManager {
 
         if (!this.dbManager.exists(trip.getName())){
             dbManager.insertTrip(trip);
-            System.out.println("The trips has been added to the database");
+            System.out.println("The trip has been added to the database");
         } else{
             System.out.println("This trip is already in the database");
         }
