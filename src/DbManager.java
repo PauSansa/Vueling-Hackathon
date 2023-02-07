@@ -65,6 +65,24 @@ public class DbManager {
         }
     }
 
+    public void showAllTrips() {
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM prueba_trips");
+            while(rs.next()){
+                String tripName = rs.getString("name");
+                String tripType = rs.getString("type") + " Trip";
+                String tripDuration = rs.getInt("duration") + " days";
+                String tripCities = rs.getString("cities");
+                String tripDetails = rs.getString("details");
+
+                String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
+                System.out.println(finalString);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public ResultSet searchTripsName(String name){
         if (!exists(name)){
             return null;

@@ -179,4 +179,8 @@ public class TravelManager {
         }
 
     }
+
+    public void showAllTrips(){
+        this.dbManager.showAllTrips();
+    }
 }
