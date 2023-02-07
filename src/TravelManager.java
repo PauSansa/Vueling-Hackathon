@@ -14,7 +14,7 @@ public class TravelManager {
 
     //It returns a list of trips that contain the received city
     public void searchTripCity(){
-        String query = null;
+        String city = null;
         boolean correct = false;
         List<Trip> matches;
         while(!correct) {
@@ -23,14 +23,43 @@ public class TravelManager {
                 if (keyphrase.length() < 3) {
                     throw new WrongInputException();
                 } else {
-                    query = keyphrase;
+                    city = keyphrase;
                     correct = true;
                 }
             } catch (WrongInputException e) {
                 System.out.println("Wrong Input, you must enter 3 chars minimum");
             }
         }
-        String finalQuery = query;
+
+        ResultSet rs = this.dbManager.searchTripsCity(city);
+        try {
+            if (rs.next()) {
+                String tripName = rs.getString("name");
+                String tripType = rs.getString("type") + " Trip";
+                String tripDuration = rs.getInt("duration") + " days";
+                String tripCities = rs.getString("cities");
+                String tripDetails = rs.getString("details");
+
+                String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
+                System.out.println(finalString);
+            } else {
+                System.out.println("There is no trips with this city");
+                return;
+            }
+
+            while (rs.next()){
+                String tripName = rs.getString("name");
+                String tripType = rs.getString("type") + " Trip";
+                String tripDuration = rs.getInt("duration") + " days";
+                String tripCities = rs.getString("cities");
+                String tripDetails = rs.getString("details");
+
+                String finalString = String.join("; ", tripName, tripType, tripDuration, tripCities, tripDetails);
+                System.out.println(finalString);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
 
 

@@ -79,4 +79,15 @@ public class DbManager {
         return null;
     }
 
+    public ResultSet searchTripsCity(String city){
+        String formattedString = String.format("%%%s%%", city);
+        String query = String.format("SELECT * FROM prueba_trips WHERE cities LIKE '%s'",formattedString);
+        try {
+            return stmt.executeQuery(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
