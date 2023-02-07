@@ -9,10 +9,10 @@ public class DbManager {
     public DbManager() {
         try {
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://sql7.freesqldatabase.com/sql7596281",
-                    "sql7596281",
-                    "5V4U7k7EwE"
-            );
+                    "jdbc:mysql://eu-central.connect.psdb.cloud/mysql_hackathon?sslMode=VERIFY_IDENTITY",
+                    "kzumuvpn28leq2u456nb",
+                    "pscale_pw_w5srlVPeh7I5ZGNtk7JXcsm35B2Xk5h09mUL0q8ChLB");
+
 
             stmt = conn.createStatement();
 
